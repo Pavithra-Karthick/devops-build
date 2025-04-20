@@ -1,7 +1,7 @@
 version: '3.8'
 services:
     app1:
-      image: myimage:v2
+      image: chadayandipavithra/dev:IMAGETAG
       container_name: container1
       ports:
         - "80:80"
