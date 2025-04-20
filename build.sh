@@ -13,3 +13,23 @@ else
   echo "Building image failed"
   exit 1
 fi
+
+# Docker LOGIN
+
+echo " LOGGING INTO DOCKER "
+
+docker login -u chadayandipavithra -p $DOCKER_PASSWD
+
+# DOCKER RETAG
+
+docker tag myimage:v2 chadayandipavithra/dev:$IMAGE_TAG
+
+echo " Verifying docker images"
+
+docker images
+
+# DOCKER PUSH	
+
+docker push chadayandipavithra/dev:$IMAGE_TAG
+
+
