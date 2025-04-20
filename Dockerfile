@@ -1,4 +1,4 @@
 FROM nginx:alpine
-COPY /website /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx","-g","daemon off;"]
+RUN cp /usr/share/nginx/html/index.html /usr/share/nginx/html/index2.html
+RUN rm -rf /usr/share/nginx/html/index.html
+COPY build  /usr/share/nginx/html/
