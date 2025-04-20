@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+    app1:
+      image: Myimage:v2
+      container_name: container1
+      ports:
+        - "7000:80"
+
