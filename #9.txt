@@ -1,0 +1,298 @@
+Started by user Pavithra C
+Running as SYSTEM
+Building in workspace /var/lib/jenkins/workspace/Project1
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/Project1/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Pavithra-Karthick/devops-build # timeout=10
+Fetching upstream changes from https://github.com/Pavithra-Karthick/devops-build
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.5'
+ > git fetch --tags --force --progress -- https://github.com/Pavithra-Karthick/devops-build +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/dev^{commit} # timeout=10
+Checking out Revision fe9a3092276fc5e4e9b7615f3bffd266ae75a97c (refs/remotes/origin/dev)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f fe9a3092276fc5e4e9b7615f3bffd266ae75a97c # timeout=10
+Commit message: "newfile"
+ > git rev-list --no-walk fe9a3092276fc5e4e9b7615f3bffd266ae75a97c # timeout=10
+[Project1] $ /bin/sh -xe /tmp/jenkins2573699192836414676.sh
++ ls -ltr
+total 16
+drwxr-xr-x. 3 jenkins jenkins 179 Apr 20 17:45 build
+-rw-r--r--. 1 jenkins jenkins 171 Apr 20 17:56 Dockerfile
+-rw-r--r--. 1 jenkins jenkins 145 Apr 20 20:12 docker-compose.yml
+-rwxr-xr-x. 1 jenkins jenkins 211 Apr 20 20:12 deploy.sh
+-rwxr-xr-x. 1 jenkins jenkins 560 Apr 20 20:12 build.sh
++ ./build.sh
+ Building the docker image Myimage:v2 
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 83B 0.1s
+#1 transferring dockerfile: 263B 0.2s done
+#1 DONE 0.3s
+
+#2 [internal] load metadata for docker.io/library/nginx:alpine
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 159B done
+#3 DONE 0.0s
+
+#4 [1/4] FROM docker.io/library/nginx:alpine
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 1.84kB 0.0s done
+#5 DONE 0.1s
+
+#6 [2/4] RUN cp /usr/share/nginx/html/index.html /usr/share/nginx/html/index2.html
+#6 CACHED
+
+#7 [3/4] RUN rm -rf /usr/share/nginx/html/index.html
+#7 CACHED
+
+#8 [4/4] COPY build  /usr/share/nginx/html/
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 writing image sha256:448adade3980ae781ee169174c580c89dfc204f772a0371439f41598efca7014 0.0s done
+#9 naming to docker.io/library/myimage:v2 0.1s done
+#9 DONE 0.2s
+Building image is successful.
+ LOGGING INTO DOCKER 
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+Login Succeeded
+ Verifying docker images
+REPOSITORY               TAG       IMAGE ID       CREATED        SIZE
+chadayandipavithra/dev   V3        448adade3980   24 hours ago   50.8MB
+myimage                  v2        448adade3980   24 hours ago   50.8MB
+myimage                  latest    f66e8d18ca53   37 hours ago   50.8MB
+<none>                   <none>    e491f0b334c5   39 hours ago   50.8MB
+<none>                   <none>    988eafc3f4a7   39 hours ago   50.8MB
+new                      v1        7883228ef15c   4 days ago     48.2MB
+nginx                    alpine    6769dc3a703c   5 days ago     48.2MB
+hello-world              latest    74cc54e27dc4   3 months ago   10.1kB
+The push refers to repository [docker.io/chadayandipavithra/dev]
+646e508b2074: Preparing
+0cf06d89dac6: Preparing
+2e0ebcb33c4e: Preparing
+0d853d50b128: Preparing
+947e805a4ac7: Preparing
+811a4dbbf4a5: Preparing
+b8d7d1d22634: Preparing
+e244aa659f61: Preparing
+c56f134d3805: Preparing
+d71eae0084c1: Preparing
+08000c18d16d: Preparing
+811a4dbbf4a5: Waiting
+b8d7d1d22634: Waiting
+e244aa659f61: Waiting
+c56f134d3805: Waiting
+d71eae0084c1: Waiting
+08000c18d16d: Waiting
+2e0ebcb33c4e: Layer already exists
+0cf06d89dac6: Layer already exists
+947e805a4ac7: Layer already exists
+0d853d50b128: Layer already exists
+646e508b2074: Layer already exists
+811a4dbbf4a5: Layer already exists
+e244aa659f61: Layer already exists
+c56f134d3805: Layer already exists
+d71eae0084c1: Layer already exists
+b8d7d1d22634: Layer already exists
+08000c18d16d: Layer already exists
+V3: digest: sha256:d706ffb522d68309c8bb87a300f69ba6bd8217d6c3b4bd988ae13f7135726292 size: 2613
++ ssh -o StrictHostKeyChecking=no -i **** ec2-user@ec2-44-211-164-7.compute-1.amazonaws.com
+Pseudo-terminal will not be allocated because stdin is not a terminal.
+Warning: Permanently added 'ec2-44-211-164-7.compute-1.amazonaws.com' (ED25519) to the list of known hosts.
+Register this system with Red Hat Insights: rhc connect
+
+Example:
+# rhc connect --activation-key <key> --organization <org>
+
+The rhc client and Red Hat Insights will enable analytics and additional
+management capabilities on your system.
+View your connected systems at https://console.redhat.com/insights
+
+You can learn more about how to register your system 
+using rhc at https://red.ht/registration
++ ./deploy.sh
+deploying image into the server
+time="2025-04-22T06:37:27Z" level=warning msg="/var/lib/jenkins/workspace/Project1/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+Deleted Containers:
+ae16c4182fe25fb4a0f8316d9dfa22f527a9580b5b51b15edea51f24d304e43b
+e02b47bca982d9b433d24dba52382f1a527f30ade579337f5b5cc5fd603408fd
+8971a2accd368cf5bad9369459e4a5028f8f4cbf8c0467f9f06dd69075e260b6
+
+Deleted Networks:
+devops-build_default
+
+Deleted Images:
+deleted: sha256:988eafc3f4a7e26373ff78fbd01c030efc963879e5f7c3ebe93f919907c97af7
+untagged: myimage:latest
+deleted: sha256:f66e8d18ca531ccb5e6980ef5b438f4c92f294198c4ea49a09ef633fc4ffb0ef
+deleted: sha256:c824f3c84d31f7b997372af2bd000c7b4b5dad841256e3ce0017b5990e3647a8
+deleted: sha256:8572960c8e78414a42c5f471021e58a36202a147a9ea60a762733850d19f2fc9
+deleted: sha256:f1434798452b318c58f884836b4c36944c729fa091391e9a31132a2efe211e31
+deleted: sha256:88e5e62033eacb350d080ff3ce18f09e00a5e387698c5f1d9258b705dadfe58e
+deleted: sha256:fb1909d2d0f22f430f0099174855ebfd5ade375f933a93f8a21ff12cec3bed61
+untagged: chadayandipavithra/dev:V3
+untagged: chadayandipavithra/dev@sha256:d706ffb522d68309c8bb87a300f69ba6bd8217d6c3b4bd988ae13f7135726292
+untagged: myimage:v2
+deleted: sha256:448adade3980ae781ee169174c580c89dfc204f772a0371439f41598efca7014
+untagged: nginx:alpine
+untagged: nginx@sha256:65645c7bb6a0661892a8b03b89d0743208a18dd2f3f17a54ef4b76fb8e2f2a10
+deleted: sha256:6769dc3a703c719c1d2756bda113659be28ae16cf0da58dd5fd823d6b9a050ea
+untagged: new:v1
+deleted: sha256:7883228ef15c36c8679f722cd9cef4dd8c0932af088b920967717f692ddfb5da
+untagged: hello-world:latest
+untagged: hello-world@sha256:424f1f86cdf501deb591ace8d14d2f40272617b51b374915a87a2886b2025ece
+deleted: sha256:74cc54e27dc41bb10dc4b2226072d469509f2f22f1a3ce74f4a59661a1d44602
+deleted: sha256:63a41026379f4391a306242eb0b9f26dc3550d863b7fdbb97d899f6eb89efe72
+deleted: sha256:e491f0b334c53419adc4f6ccbae47554a13447d8bdf1dd6a7f1bc91ee6b538c2
+
+Deleted build cache objects:
+1h35js5e9dlcc61vgb5fq6ctd
+aq72klpfi440oo6uflwdoblkz
+t90oab12iigw3j887ai68zj07
+v31zn7svwzpmlzulv2ix53hwf
+3u62pltvo6ofsizlvocvjuenm
+703lvlsycd9mk2g3k9izfqsw6
+lwx7bwg2x3xw0i554ebqshcqk
+drwhnkk2x6vwta1ar0ebu69j3
+klmnd5pwjhzga7riloelvdgei
+tdga7g6s9ocf61nywnzu1wud8
+v5blyr7lqhogm89b6k0rmp623
+sxlbwbfpuieq7sdyjmrkaexcj
+74a0e7voak5w8lierj8w3v3hd
+s7yj37yf4jwd2eifplwcvq0je
+1qdqgx7ylvy2ymqb17ozg3rn5
+4qd2ggw5cgjdn8c4yzat69wzs
+fywysw3z4tni0sgtwlsy8vp9y
+uwui74ne490c6sq54isyoh4va
+v6vl7ehl9dzo27e7br9958ahz
+vg23watbv9goyt0946cu9ee06
+j1y9krb8kjp0ozj4xownembzs
+w6jxd0ivyvzd4rpwivtdacr00
+k76on9kxku926sazx54r0fmic
+i4uoed4n1br8saxwm7sui8bin
+tps2evxav2v55vuqqp4obl8g1
+v7rgxvi8t9hccb7t7r6l9q97z
+k44l76luoh2wyo9psbu18nv6l
+yam3ny7zm5q3kyvm0s77lnv1l
+3j3sqys3ix6aph9kdbrjvrvd9
+n1vgj96uo4ivlceogz6pt4wqy
+j6xvzbi6fe0x89f2vxt227rw6
+
+Total reclaimed space: 15.64MB
+time="2025-04-22T06:37:31Z" level=warning msg="/var/lib/jenkins/workspace/Project1/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ app1 Pulling 
+ f18232174bc9 Pulling fs layer 
+ 61ca4f733c80 Pulling fs layer 
+ b464cfdf2a63 Pulling fs layer 
+ d7e507024086 Pulling fs layer 
+ 81bd8ed7ec67 Pulling fs layer 
+ 197eb75867ef Pulling fs layer 
+ 34a64644b756 Pulling fs layer 
+ 39c2ddfd6010 Pulling fs layer 
+ b3d0e7650c40 Pulling fs layer 
+ ca175d87a837 Pulling fs layer 
+ b9550edbc5d1 Pulling fs layer 
+ d7e507024086 Waiting 
+ 81bd8ed7ec67 Waiting 
+ 197eb75867ef Waiting 
+ 34a64644b756 Waiting 
+ 39c2ddfd6010 Waiting 
+ b3d0e7650c40 Waiting 
+ ca175d87a837 Waiting 
+ b9550edbc5d1 Waiting 
+ b464cfdf2a63 Downloading [==================================================>]     629B/629B
+ b464cfdf2a63 Verifying Checksum 
+ b464cfdf2a63 Download complete 
+ f18232174bc9 Downloading [>                                                  ]  50.64kB/3.642MB
+ 61ca4f733c80 Downloading [>                                                  ]  33.23kB/1.791MB
+ f18232174bc9 Verifying Checksum 
+ f18232174bc9 Download complete 
+ f18232174bc9 Extracting [>                                                  ]  65.54kB/3.642MB
+ 61ca4f733c80 Verifying Checksum 
+ 61ca4f733c80 Download complete 
+ d7e507024086 Downloading [==================================================>]     955B/955B
+ d7e507024086 Verifying Checksum 
+ d7e507024086 Download complete 
+ 197eb75867ef Downloading [==================================================>]  1.209kB/1.209kB
+ 197eb75867ef Verifying Checksum 
+ 197eb75867ef Download complete 
+ 81bd8ed7ec67 Downloading [==================================================>]     402B/402B
+ 81bd8ed7ec67 Verifying Checksum 
+ 81bd8ed7ec67 Download complete 
+ 34a64644b756 Downloading [==================================================>]  1.397kB/1.397kB
+ 34a64644b756 Verifying Checksum 
+ 34a64644b756 Download complete 
+ f18232174bc9 Extracting [===============>                                   ]  1.114MB/3.642MB
+ 39c2ddfd6010 Downloading [>                                                  ]  156.1kB/15.52MB
+ ca175d87a837 Downloading [==================================================>]     217B/217B
+ ca175d87a837 Verifying Checksum 
+ ca175d87a837 Download complete 
+ f18232174bc9 Extracting [==========================>                        ]  1.966MB/3.642MB
+ b3d0e7650c40 Downloading [==================================================>]     608B/608B
+ b3d0e7650c40 Verifying Checksum 
+ b3d0e7650c40 Download complete 
+ 39c2ddfd6010 Downloading [============================>                      ]  8.929MB/15.52MB
+ 39c2ddfd6010 Verifying Checksum 
+ 39c2ddfd6010 Download complete 
+ f18232174bc9 Extracting [=======================================>           ]  2.884MB/3.642MB
+ f18232174bc9 Extracting [==================================================>]  3.642MB/3.642MB
+ f18232174bc9 Extracting [==================================================>]  3.642MB/3.642MB
+ b9550edbc5d1 Downloading [=>                                                 ]  16.38kB/737kB
+ b9550edbc5d1 Downloading [==================================================>]    737kB/737kB
+ b9550edbc5d1 Verifying Checksum 
+ b9550edbc5d1 Download complete 
+ f18232174bc9 Pull complete 
+ 61ca4f733c80 Extracting [>                                                  ]  32.77kB/1.791MB
+ 61ca4f733c80 Extracting [==================================================>]  1.791MB/1.791MB
+ 61ca4f733c80 Extracting [==================================================>]  1.791MB/1.791MB
+ 61ca4f733c80 Pull complete 
+ b464cfdf2a63 Extracting [==================================================>]     629B/629B
+ b464cfdf2a63 Extracting [==================================================>]     629B/629B
+ b464cfdf2a63 Pull complete 
+ d7e507024086 Extracting [==================================================>]     955B/955B
+ d7e507024086 Extracting [==================================================>]     955B/955B
+ d7e507024086 Pull complete 
+ 81bd8ed7ec67 Extracting [==================================================>]     402B/402B
+ 81bd8ed7ec67 Extracting [==================================================>]     402B/402B
+ 81bd8ed7ec67 Pull complete 
+ 197eb75867ef Extracting [==================================================>]  1.209kB/1.209kB
+ 197eb75867ef Extracting [==================================================>]  1.209kB/1.209kB
+ 197eb75867ef Pull complete 
+ 34a64644b756 Extracting [==================================================>]  1.397kB/1.397kB
+ 34a64644b756 Extracting [==================================================>]  1.397kB/1.397kB
+ 34a64644b756 Pull complete 
+ 39c2ddfd6010 Extracting [>                                                  ]  163.8kB/15.52MB
+ 39c2ddfd6010 Extracting [=======>                                           ]  2.458MB/15.52MB
+ 39c2ddfd6010 Extracting [================>                                  ]  5.243MB/15.52MB
+ 39c2ddfd6010 Extracting [==========================>                        ]  8.356MB/15.52MB
+ 39c2ddfd6010 Extracting [===================================>               ]  11.14MB/15.52MB
+ 39c2ddfd6010 Extracting [=============================================>     ]  14.25MB/15.52MB
+ 39c2ddfd6010 Extracting [==================================================>]  15.52MB/15.52MB
+ 39c2ddfd6010 Pull complete 
+ b3d0e7650c40 Extracting [==================================================>]     608B/608B
+ b3d0e7650c40 Extracting [==================================================>]     608B/608B
+ b3d0e7650c40 Pull complete 
+ ca175d87a837 Extracting [==================================================>]     217B/217B
+ ca175d87a837 Extracting [==================================================>]     217B/217B
+ ca175d87a837 Pull complete 
+ b9550edbc5d1 Extracting [==>                                                ]  32.77kB/737kB
+ b9550edbc5d1 Extracting [==================================================>]    737kB/737kB
+ b9550edbc5d1 Extracting [==================================================>]    737kB/737kB
+ b9550edbc5d1 Pull complete 
+ app1 Pulled 
+ Network project1_default  Creating
+ Network project1_default  Created
+ Container container1  Creating
+ Container container1  Created
+ Container container1  Starting
+ Container container1  Started
+Finished: SUCCESS
